@@ -1,0 +1,60 @@
+﻿<Window x:Class="WpfAppDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WPF Demo Application" Height="400" Width="600">
+
+    <Window.Resources>
+        <!-- Стиль для кнопок с триггерами -->
+        <Style x:Key="ColoredButtonStyle" TargetType="Button">
+            <Setter Property="ToolTip" Value="Изменить цвет фона"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="LightGray"/>
+            <!-- Начальный цвет фона -->
+
+            <Style.Triggers>
+                <Trigger Property="Content" Value="Красный">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+                <Trigger Property="Content" Value="Зеленый">
+                    <Setter Property="Background" Value="Green"/>
+                </Trigger>
+                <Trigger Property="Content" Value="Синий">
+                    <Setter Property="Background" Value="Blue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Стиль для элементов меню -->
+        <Style x:Key="ColoredMenuItemStyle" TargetType="MenuItem">
+            <Setter Property="ToolTip" Value="Изменить цвет фона"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Закрыть" Click="CloseMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Красный" Click="RedBackground_Click" Style="{StaticResource ColoredMenuItemStyle}"/>
+                <MenuItem Header="Зеленый" Click="GreenBackground_Click" Style="{StaticResource ColoredMenuItemStyle}"/>
+                <MenuItem Header="Синий" Click="BlueBackground_Click" Style="{StaticResource ColoredMenuItemStyle}"/>
+            </MenuItem>
+            <MenuItem Header="О программе" Click="AboutMenuItem_Click"/>
+        </Menu>
+
+        <ToolBar VerticalAlignment="Top">
+            <Button Content="Красный" Click="RedBackground_Click" Style="{StaticResource ColoredButtonStyle}"/>
+            <Button Content="Зеленый" Click="GreenBackground_Click" Style="{StaticResource ColoredButtonStyle}"/>
+            <Button Content="Синий" Click="BlueBackground_Click" Style="{StaticResource ColoredButtonStyle}"/>
+            <Separator/>
+            <Button Content="Закрыть" Click="CloseMenuItem_Click" Style="{StaticResource ColoredButtonStyle}" ToolTip="Закрыть приложение"/>
+            <Button Content="О программе" Click="AboutMenuItem_Click" Style="{StaticResource ColoredButtonStyle}" ToolTip="Информация о разработчике"/>
+        </ToolBar>
+
+        <StatusBar VerticalAlignment="Bottom">
+            <StatusBarItem x:Name="StatusBarItem1">Готово</StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
